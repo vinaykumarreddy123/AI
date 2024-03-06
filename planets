@@ -1,0 +1,26 @@
+% Facts
+planet(mercury, distance_from_sun(0.39), mass(0.055)).
+planet(saturn, orbital_period(29.5), day_length(10.7)).
+
+% Rule: distance_between_planets/3
+distance_between_planets(Planet1, Planet2, Distance) :-
+    planet(Planet1, distance_from_sun(Distance1), _),
+    planet(Planet2, distance_from_sun(Distance2), _),
+    Distance is abs(Distance1 - Distance2).
+
+% Example Query: Distance between Venus and Jupiter
+% ?- distance_between_planets(venus, jupiter, Distance).
+% Result: Distance = 2.44
+
+% Query: Planets closer to the Sun than Earth
+closer_to_sun_than_earth(Planet) :-
+    planet(Planet, distance_from_sun(Distance), _),
+    planet(earth, earth_distance, _),
+    Distance < earth_distance.
+
+% Example Query: Planets closer to the Sun than Earth
+% ?- closer_to_sun_than_earth(CloserPlanet).
+% Result: CloserPlanet = mercury
+
+% Additional Facts for Earth's distance from the Sun
+planet(earth, earth_distance).

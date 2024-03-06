@@ -1,0 +1,21 @@
+% Facts
+male(john).
+male(bob).
+female(jane).
+female(amy).
+
+has_child(john, amy).
+has_child(bob, amy).
+has_child(jane, amy).
+
+% Rules
+parent(X) :- has_child(X, _).
+father(X) :- male(X), parent(X).
+mother(X) :- female(X), parent(X).
+
+% Forward Chaining Rule
+find_parent(X) :- father(X), write(X), write(' is a father of Amy.\n').
+find_parent(X) :- mother(X), write(X), write(' is a mother of Amy.\n').
+
+% Example Query
+% ?- find_parent(Parent).

@@ -1,0 +1,9 @@
+% Base case: sum of integers from 1 to 0 is 0
+sum_up_to_n(0, 0).
+
+% Recursive case: sum of integers from 1 to n is n + sum of integers from 1 to (n-1)
+sum_up_to_n(N, Result) :-
+    N > 0,
+    PrevN is N - 1,
+    sum_up_to_n(PrevN, PrevSum),
+    Result is N + PrevSum.
